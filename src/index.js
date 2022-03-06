@@ -41,7 +41,6 @@ class Menager extends React.Component
       text: "",
     };
 
-    this.handleChange = this.handleChange.bind(this);
     this.setText = this.setText.bind(this);
   }
 
@@ -53,18 +52,38 @@ class Menager extends React.Component
 
   setText(value)
   {
-    this.setState({text: value});
+    this.setState({text: text_content});
   }
+
+
 
   render()
   {
     return(
       <div id='main'>
-        <div id='header'>
+        <Header setText={this.setText}></Header>
+        <Center.Center games={this.state.games} text={this.state.text} setText={this.setText}/>
+      </div>
+      
+    )
+  }
+}
+
+
+function Header(params) {
+
+  function handleChange(e)
+  {
+    text_content=e.target.value;
+    console.log(text_content);
+  }
+  
+  return(
+    <div id='header'>
           <div className='nav'>
             <div className='search'>
-                <input type='text'  onChange={this.handleChange}></input>
-                <button onClick={()=>{this.setState({text: text_content})}}>Szukaj</button>
+                <input type='text' onChange={handleChange}></input>
+                <button onClick={params.setText}>Szukaj</button>
             </div>
             <div className='links'>
             <a>Nowości</a>
@@ -78,28 +97,6 @@ class Menager extends React.Component
             Aplikacja Mobilna Planszeo
           </h1>
         </div>
-        <Center.Center games={this.state.games} text={this.state.text} setText={this.setText}/>
-      </div>
-      
-    )
-  }
-}
-
-
-function Header(params) {
-  
-  return(
-    <div id='header'>
-      <div className='nav'>
-        <a>Nowości</a>
-        <a>Rankingi</a>
-        <a>Współpraca</a>
-        <a>Blog</a>
-        </div>
-        <h1>
-          Aplikacja Mobilna Planszeo
-        </h1>
-    </div>
   )
 }
 

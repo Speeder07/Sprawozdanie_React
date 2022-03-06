@@ -21,7 +21,9 @@ export function Center(params) {
 
     const [year, setYear] = useState(0);
     const [month, setMonth] = useState(12);
-    const [years, setYears] = useState(new Array());
+    
+
+    let years = new Array();
 
     function SetMonth(params) {
         setMonth(params);
@@ -59,9 +61,7 @@ export function Center(params) {
                     gamelists.push(new GameList(element.date, new Array(element)));
                 }
                 if (!years.includes(element.date.getFullYear())) {
-                    let temp = years;
-                    temp.push(element.date.getFullYear());
-                    setYears(temp);
+                    years.push(element.date.getFullYear());
                 }
             }
     });
