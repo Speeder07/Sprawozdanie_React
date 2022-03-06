@@ -22,6 +22,8 @@ const months = [
   'December'
 ]
 
+let text_content = "";
+
 class Menager extends React.Component
 {
   constructor(props)
@@ -29,30 +31,54 @@ class Menager extends React.Component
     super(props);
     //----------ARRAY-START---------------------
     let array = [];
-    array.push(new Game_List.GameList(new Date(2022, 11, 11), new Array(new Game.Game("/null", "GRA_001"), new Game.Game("./null", "Monopoly"))));
-    array.push(new Game_List.GameList(new Date(2022, 0, 23), new Array(new Game.Game("/null", "Chef"), new Game.Game("./null", "Coś"), new Game.Game("./null", "10 Sec"))));
-
-
-
-
+    array.push(new Game.Game("wenecja.webp", "Wenecja", new Date(2022, 11, 11)), new Game.Game("monopoly.webp", "Monopoly", new Date(2022, 11, 11)));
+    array.push(new Game.Game("bits.webp", "Bits", new Date(2022, 5, 21)), new Game.Game("sabotazysta.webp", "Sabotażysta", new Date(2022, 5, 21)), new Game.Game("10sec.jpg", "10 Sec",new Date(2022, 5, 21)));
+    array.push(new Game.Game("dziennik1907.webp", 'Dziennik: Wyprawa 1907\n Zakazane kopalnie', new Date(2021, 6, 9)));
 
     //----------ARRAY-END----------------------
     this.state = {
       games: array,
+      text: "",
     };
 
+    this.handleChange = this.handleChange.bind(this);
+    this.setText = this.setText.bind(this);
+  }
+
+  handleChange(e)
+  {
+    text_content=e.target.value;
+    console.log(text_content);
+  }
+
+  setText(value)
+  {
+    this.setState({text: value});
   }
 
   render()
   {
     return(
       <div id='main'>
-        <Header/>
-        <div className='mcontainer'>
-          <Center.Center games={this.state.games}/>
-          <LinkCenter games={this.state.games}/>
+        <div id='header'>
+          <div className='nav'>
+            <div className='search'>
+                <input type='text'  onChange={this.handleChange}></input>
+                <button onClick={()=>{this.setState({text: text_content})}}>Szukaj</button>
+            </div>
+            <div className='links'>
+            <a>Nowości</a>
+            <a>Rankingi</a>
+            <a>Współpraca</a>
+            <a>Blog</a>
+            </div>
+          </div>
+            
+          <h1>
+            Aplikacja Mobilna Planszeo
+          </h1>
         </div>
-        
+        <Center.Center games={this.state.games} text={this.state.text} setText={this.setText}/>
       </div>
       
     )
@@ -77,16 +103,6 @@ function Header(params) {
   )
 }
 
-function LinkCenter(params) {
-  return(
-      <div className="box_adress">
-          {params.games.map((item, index)=>{
-            return <a href={"#"+item.date.getFullYear()+" "+item.date.getMonth()+" "+item.date.getDate()}>{""+item.date.getFullYear()+" "+months[item.date.getMonth()]+" "+item.date.getDate()}</a>
-          })}
-      </div>
-      
-  )
-}
 
 ReactDOM.render(
   <div>

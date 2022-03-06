@@ -13,14 +13,20 @@ code {
 }
 
 .game_image {
-  padding: 10px;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
   width: auto;
-  height: 60px;
-  border: black dotted 2px;
+  height: auto;
+  border: #2c2c54 solid 2px;
   margin: 2px;
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
+}
+
+.image {
+  height: 120px;
 }
 
 .list {
@@ -52,21 +58,49 @@ code {
   padding: 5px;
   padding-top: 10px;
   padding-bottom: 10px;
-  display: flex;
-  flex-flow: row-reverse;
   background-color: white;
   color: black;
+  height: 45px;
 }
 
 .nav * {
-  font-size: 1.7em;
+  font-size: 1.2em;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.search {
+  position: absolute;
+  left: 0;
+}
+
+.links {
+  position: absolute;
+  right: 0;
+}
+
+.search button {
+  height: 35px;
+  width: 100px;
+  font-size: 20px;
+  margin: 2px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2c2c54;
+  color: white;
+}
+
+.search input {
+  border: none;
+  border-bottom: #2c2c54 2px dotted;
+  outline: none;
 }
 
 #center {
   width: 70vw;
   padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .box {
@@ -100,6 +134,23 @@ code {
   text-decoration: none;
 }
 
-.mcontainer {
+.year_filter,
+.month_filter {
   display: flex;
+}
+
+.year_filter button,
+.month_filter button {
+  height: 35px;
+  min-width: 50px;
+  font-size: 20px;
+  margin: 2px;
+  border-radius: 5px;
+  border: none;
+}
+
+.year_filter button.chosen,
+.month_filter button.chosen {
+  background-color: #2c2c54;
+  color: white;
 }
